@@ -1,0 +1,116 @@
+[build-system]
+requires = ["setuptools>=65.5.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "graph-jsp-env"
+version = "1.1.0"
+description = "A flexible enviorment for job shop scheduling using the disjunctive graph apporach."
+readme = "README.md"
+authors = [{ name = "Alexander Nasuta", email = "alexander.nasuta@ima.rwth-aachen.de" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = []
+dependencies = [
+    "rich",
+    "opencv-python",
+    "plotly",
+    "networkx>=3",
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "kaleido",
+    "gymnasium"
+]
+requires-python = ">=3.9"
+
+[project.optional-dependencies]
+dev = [
+    "bumpver",
+    "pip-tools",
+    "pytest",
+    "pytest-cov",
+    "mypy",
+    "flake8",
+    "stable_baselines3",
+    "tox",
+    # for docs with sphinx
+    "sphinx",
+    "myst-parser", # .md support for sphinx
+    "sphinx-autobuild",
+    "furo", # cool theme
+    "twine",
+    "sphinx-copybutton", # for code copy buttons
+    "sphinxcontrib-bibtex", # for bibtex support
+    "sphinxcontrib.tikz", # for tikz support
+    "sphinxcontrib-jsmath", # for math support
+    "nbsphinx", # for jupyter notebook support in sphinx
+    # for examples
+    "sb3_contrib",
+    # for converting examples to notebooks
+    "jupytext",
+    "notebook",
+    "typing_extensions>=4.12.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Alexander-Nasuta/graph-jsp-env"
+
+[tool.pytest.ini_options]
+addopts = "--cov=graph_jsp_env -p no:warnings"
+testpaths = [
+    "tests",
+]
+
+[tool.mypy]
+mypy_path = "src"
+check_untyped_defs = true
+disallow_any_generics = true
+ignore_missing_imports = true
+no_implicit_optional = true
+show_error_codes = true
+strict_equality = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+no_implicit_reexport = true
+
+# auto generated with bumpver inint
+#
+# [tool.bumpver]
+# current_version = "2022.1001-alpha"
+# version_pattern = "YYYY.BUILD[-TAG]"
+# commit_message = "bump version {old_version} -> {new_version}"
+# commit = true
+# tag = true
+# push = true
+
+[tool.bumpver]
+current_version = "1.0.0"
+version_pattern = "MAJOR.MINOR.PATCH"
+commit_message  = "Bump version {old_version} -> {new_version}"
+commit          = true
+tag             = true
+push            = false
+
+
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = [
+    'current_version = "{version}"',
+    'version = "{version}"'
+]
+"setup.py" = [
+    "{version}",
+    "{pep440_version}",
+]
+"README.md" = [
+    "{version}",
+    "{pep440_version}",
+]
+
